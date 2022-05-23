@@ -29,4 +29,19 @@ public class PlayerController : MonoBehaviour
 
         this.transform.Translate(new Vector3(playerMove, 0, 0));
     }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(col.CompareTag("firstdoor"))
+            {
+                this.transform.position = col.transform.GetChild(0).transform.position;
+            }
+            else if(col.CompareTag("seconddoor"))
+            {
+                this.transform.position = col.transform.parent.transform.position;
+            }
+        }
+    }
 }
