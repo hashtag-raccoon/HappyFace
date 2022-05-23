@@ -32,4 +32,19 @@ public class PlayerControllwe : MonoBehaviour
 
         anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
     }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (col.CompareTag("firstdoor"))
+            {
+                this.transform.position = col.transform.GetChild(0).transform.position;
+            }
+            else if (col.CompareTag("seconddoor"))
+            {
+                this.transform.position = col.transform.parent.transform.position;
+            }
+        }
+    }
 }
