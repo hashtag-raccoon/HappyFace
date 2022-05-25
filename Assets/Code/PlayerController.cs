@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllwe : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     int speed = 6;
 
@@ -37,13 +37,17 @@ public class PlayerControllwe : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (col.CompareTag("firstdoor"))
+            if (col.CompareTag("firstdoor")) // 문에 닿았을 경우
             {
-                this.transform.position = col.transform.GetChild(0).transform.position;
+                this.transform.position = col.transform.GetChild(0).transform.position; // 문 좌표로 플레이어 이동
             }
-            else if (col.CompareTag("seconddoor"))
+            else if (col.CompareTag("seconddoor")) // 문에 닿았을 경우
             {
-                this.transform.position = col.transform.parent.transform.position;
+                this.transform.position = col.transform.parent.transform.position; // 문 좌표로 플레이어 이동
+            }
+            else if (col.CompareTag("material")) // 사물에 닿았을 경우
+            {
+                Debug.Log("추후 추가"); // 심리게이지 처리, 게임오버 X 처리 필요
             }
         }
     }
