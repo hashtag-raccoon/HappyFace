@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllwe : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     int speed = 6;
 
-    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -29,19 +28,17 @@ public class PlayerControllwe : MonoBehaviour
         }
 
         this.transform.Translate(new Vector3(playerMove, 0, 0));
-
-        anim.SetFloat("MoveX", Input.GetAxisRaw("Horizontal"));
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (col.CompareTag("firstdoor"))
+            if(col.CompareTag("firstdoor"))
             {
                 this.transform.position = col.transform.GetChild(0).transform.position;
             }
-            else if (col.CompareTag("seconddoor"))
+            else if(col.CompareTag("seconddoor"))
             {
                 this.transform.position = col.transform.parent.transform.position;
             }

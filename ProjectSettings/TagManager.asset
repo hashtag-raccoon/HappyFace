@@ -6,7 +6,6 @@ TagManager:
   tags:
   - firstdoor
   - seconddoor
-  - material
   layers:
   - Default
   - TransparentFX
