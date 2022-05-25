@@ -5,12 +5,15 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     int speed = 2; // 적 속도 값
-    float enemyMove; // 적 이동속도
+    float enemyMove = 0; // 적 이동속도
 
     public GameObject player;
 
     int chase = 0; // 쫓고 있는지 아닌지를 체크할 변수
     int chase_time = 0; // 추적모드 종료 시간
+
+    int dirTime = 0; // 일정주기마다 이동 방향 설정하게 만들 변수
+    int ran = 0; // 일반모드일때 이동 방향
 
     // Start is called before the first frame update
     void Start()
@@ -23,17 +26,43 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 flipMove = Vector2.zero;
 
-        if (player.transform.position.x > this.transform.position.x)
+        if (chase == 1)
         {
-            enemyMove = speed * Time.deltaTime; // 오른쪽 이동
-            flipMove = Vector2.left;
-            transform.localScale = new Vector2(-1f, 1f);
+            if (player.transform.position.x > this.transform.position.x)
+            {
+                enemyMove = speed * Time.deltaTime; // 오른쪽 이동
+                flipMove = Vector2.left;
+                transform.localScale = new Vector2(-1f, 1f);
+            }
+            else
+            {
+                enemyMove = -speed * Time.deltaTime; // 왼쪽 이동
+                flipMove = Vector2.right;
+                transform.localScale = new Vector2(1f, 1f);
+            }
         }
-        else
+        else if ( chase == 0 )
         {
-            enemyMove = -speed * Time.deltaTime; // 왼쪽 이동
-            flipMove = Vector2.right;
-            transform.localScale = new Vector2(1f, 1f);
+            if ( dirTime < 300 )
+            {
+                dirTime++;
+            }
+            else
+            {
+                dirTime = 0;
+                ran = Random.RandomRange(-1, 2); // -1~1 사이의 값 출력
+                enemyMove = speed * Time.deltaTime * ran;
+            }
+            if ( ran == -1 )
+            {
+                flipMove = Vector2.right;
+                transform.localScale = new Vector2(1f, 1f);
+            }
+            else if ( ran == 1)
+            {
+                flipMove = Vector2.right;
+                transform.localScale = new Vector2(1f, 1f);
+            }
         }
 
         this.transform.Translate(new Vector3(enemyMove, 0, 0)); // 적 이동
