@@ -6,7 +6,14 @@ public class PlayerControllwe : MonoBehaviour
 {
     int speed = 6;
 
+
     private Animator anim;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Equals("speedtrab"))
+            speed = 3;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +28,14 @@ public class PlayerControllwe : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             playerMove = speed * Time.deltaTime;
+            transform.localScale = new Vector3(-1, 1, 1);
+
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             playerMove = -speed * Time.deltaTime;
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
         this.transform.Translate(new Vector3(playerMove, 0, 0));
@@ -47,4 +57,6 @@ public class PlayerControllwe : MonoBehaviour
             }
         }
     }
+
+
 }
