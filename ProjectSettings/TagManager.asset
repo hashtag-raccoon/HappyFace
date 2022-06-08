@@ -8,6 +8,9 @@ TagManager:
   - seconddoor
   - material
   - enemy
+  - class
+  - class2
+  - classdoor
   layers:
   - Default
   - TransparentFX
