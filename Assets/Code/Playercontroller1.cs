@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Playercontroller1 : MonoBehaviour
 {
     int speed = 6;
 
+    public bool classA = false;
+    public bool classB = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -45,5 +51,20 @@ public class Playercontroller1 : MonoBehaviour
                 this.transform.position = col.transform.parent.transform.position;
             }
         }
+        if (col.CompareTag("class"))
+        {
+            classA = true;
+            classB = false;
+        }
+        else if (col.CompareTag("class2"))
+        {
+            classB = true;
+            classA = false;
+        }
+        if (col.gameObject.name.Equals("doore"))
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
+
 }
