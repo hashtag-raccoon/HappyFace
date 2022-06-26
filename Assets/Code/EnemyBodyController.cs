@@ -80,10 +80,13 @@ public class EnemyBodyController : MonoBehaviour
                     }
                 }
             }
+
         }
         if (col.gameObject.name.Equals("Player"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
         }
     }
 

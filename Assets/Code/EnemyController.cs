@@ -176,33 +176,43 @@ public class EnemyController : MonoBehaviour
         this.transform.Translate(new Vector3(enemyMove, 0, 0)); // 적 이동
 
         if (chase == 0) // 추적모드 아닐때
-        {
-            speed = 2; // 기본 속도값
-        }
-        else if (chase == 1)
-        {
-            speed = 4; // 추적모드 전용 속도값
-            if (chase_time == 0)
+            if (chase == 0) // 추적모드 아닐때
             {
-                chase = 0;
+                speed = 2; // 기본 속도값
+            }
+            else if (chase == 1)
+            {
+                speed = 4; // 추적모드 전용 속도값
+                if (chase_time == 0)
+                {
+                    speed = 2; // 기본 속도값
+                }
+                else if (chase == 1)
+                {
+                    speed = 4; // 추적모드 전용 속도값
+                    if (chase_time == 0)
+                    {
+                        chase = 0;
+                    }
+                }
+            }
+
+        void OnTriggerStay2D(Collider2D col)
+        {
+            if (col.gameObject.name.Equals("Player"))
+            {
+                chase_time = 100;
+                chase = 1;
+            }
+            else
+            {
+                if (chase_time > 0)
+                {
+                    chase_time--;
+                }
             }
         }
     }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.name.Equals("Player"))
-        {
-            chase_time = 100;
-            chase = 1;
-        }
-        else
-        {
-            if (chase_time > 0)
-            {
-                chase_time--;
-            }
-        }
-    }
-
 }
+
+    

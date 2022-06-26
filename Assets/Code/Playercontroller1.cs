@@ -61,10 +61,12 @@ public class Playercontroller1 : MonoBehaviour
             classB = true;
             classA = false;
         }
+
         if (col.gameObject.name.Equals("doore"))
         {
             SceneManager.LoadScene("EndScene");
         }
+
     }
 
 }

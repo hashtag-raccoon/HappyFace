@@ -19,7 +19,7 @@ public class End : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.name.Equals("Player"))
+        if (col.gameObject.name.Equals("doore"))
         {
             SceneManager.LoadScene("EndScene");
         }
